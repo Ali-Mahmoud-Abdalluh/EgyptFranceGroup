@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egypt France Group</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;600&family=Outfit:wght@200;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #C6A87C;
+            --dark-green: #0b1d16;
+            --overlay: rgba(11, 29, 22, 0.85);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.4s ease; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark-green);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* --- BACKGROUND ANIMATION --- */
+        .bg-image {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1471193945509-9adadd0974ce?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            z-index: -2;
+            animation: slowZoom 30s infinite alternate;
+        }
+        
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--overlay);
+            z-index: -1;
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- HEADER & LANGUAGE SWITCHER --- */
+        header {
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            color: var(--gold);
+        }
+
+        .lang-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gold);
+        }
+
+        /* --- MAIN CENTER CONTENT --- */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            transform: translateY(-20px);
+        }
+
+        /* LOGO DESIGN */
+        .logo-container {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .logo-svg {
+            width: 90px;
+            height: 90px;
+        }
+
+        .company-name {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: white;
+            font-weight: 200;
+        }
+
+        /* TEXT CONTENT */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #C6A87C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 500px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* CONTACT BUTTON */
+        .contact-btn {
+            padding: 15px 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .contact-btn:hover {
+            border-color: var(--gold);
+            background: rgba(198, 168, 124, 0.1);
+            color: var(--gold);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 2rem 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-text { animation: fadeIn 0.8s ease forwards; }
+
+        /* --- ARABIC SPECIFIC --- */
+        body.rtl { direction: rtl; font-family: 'Noto Kufi Arabic', sans-serif; }
+        body.rtl header { justify-content: flex-end; } /* Keep lang switch left/right consistent */
+        body.rtl h1 { font-family: 'Noto Kufi Arabic', sans-serif; font-weight: 600; font-size: 2.5rem;}
+        body.rtl .company-name { letter-spacing: 0; font-family: 'Noto Kufi Arabic'; }
+        
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            header { padding: 1.5rem; justify-content: center; }
+            .lang-switch { gap: 1rem; }
+            .lang-btn { font-size: 0.8rem; }
+            body.rtl h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <header>
+        <nav>
+            <ul class="lang-switch">
+                <li><button class="lang-btn active" onclick="setLang('en')">EN</button></li>
+                <li><button class="lang-btn" onclick="setLang('ar')">AR</button></li>
+                <li><button class="lang-btn" onclick="setLang('fr')">FR</button></li>
+                <li><button class="lang-btn" onclick="setLang('ru')">RU</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="logo-container">
+            <!-- Modern Minimalist Abstract Logo -->
+            <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Abstract Crop/Leaf Shape -->
+                <path d="M50 15 C 50 15, 20 40, 20 70 C 20 85, 35 95, 50 95 C 65 95, 80 85, 80 70 C 80 40, 50 15, 50 15 Z" 
+                      stroke="#C6A87C" stroke-width="1.5"/>
+                
+                <!-- Internal Lines representing growth/France/Egypt duality -->
+                <path d="M50 15 L 50 95" stroke="#C6A87C" stroke-width="1" stroke-dasharray="2 2"/>
+                <path d="M50 65 C 35 65, 30 50, 30 50" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M50 65 C 65 65, 70 50, 70 50" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="company-name" id="companyName">EGYPT FRANCE GROUP</div>
+        </div>
+
+        <h1 id="mainTitle" class="fade-text">Cultivating Excellence</h1>
+        <p id="subText" class="fade-text">Our digital platform is currently under scheduled maintenance to serve you better.</p>
+        
+        <a href="mailto:info@egyptfrancegroup.com" class="contact-btn fade-text" id="contactBtn">Contact Us</a>
+    </main>
+
+    <footer>
+        <span id="footerText">&copy; 2026 Egypt France Group.</span>
+    </footer>
+
+    <script>
+        // Translations Database
+        const translations = {
+            en: {
+                company: "EGYPT FRANCE GROUP",
+                title: "Cultivating Excellence",
+                text: "Our digital platform is currently under scheduled maintenance to serve you better. We are preparing for the next harvest.",
+                btn: "Contact Us",
+                footer: "&copy; 2026 Egypt France Group."
+            },
+            ar: {
+                company: "المجموعة المصرية الفرنسية",
+                title: "نزرع مستقبلاً جديداً",
+                text: "منصتنا الرقمية تخضع حالياً للصيانة المجدولة لخدمتكم بشكل أفضل. نحن نجهز للموسم القادم.",
+                btn: "تواصل معنا",
+                footer: "جميع الحقوق محفوظة ٢٠٢٦"
+            },
+            fr: {
+                company: "GROUPE ÉGYPTE FRANCE",
+                title: "Cultiver L'excellence",
+                text: "Notre plateforme numérique est actuellement en maintenance programmée pour mieux vous servir.",
+                btn: "Contactez-nous",
+                footer: "&copy; 2026 Groupe Égypte France."
+            },
+            ru: {
+                company: "ЕГИПЕТСКО-ФРАНЦУЗСКАЯ ГРУППА",
+                title: "Культивируя Совершенство",
+                text: "Наша цифровая платформа находится на плановом техническом обслуживании, чтобы служить вам лучше.",
+                btn: "Связаться с нами",
+                footer: "&copy; 2026 Egypt France Group."
+            }
+        };
+
+        function setLang(lang) {
+            // Update Buttons State
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Handle RTL/LTR
+            const body = document.body;
+            if (lang === 'ar') {
+                body.classList.add('rtl');
+                body.setAttribute('dir', 'rtl');
+            } else {
+                body.classList.remove('rtl');
+                body.setAttribute('dir', 'ltr');
+            }
+
+            // Update Text Content with Animation
+            const elements = ['companyName', 'mainTitle', 'subText', 'contactBtn', 'footerText'];
+            
+            elements.forEach(id => {
+                const el = document.getElementById(id);
+                // Simple fade out/in effect
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    // Map IDs to JSON keys
+                    let key = id;
+                    if(id === 'companyName') key = 'company';
+                    if(id === 'mainTitle') key = 'title';
+                    if(id === 'subText') key = 'text';
+                    if(id === 'contactBtn') key = 'btn';
+                    if(id === 'footerText') key = 'footer';
+                    
+                    el.innerHTML = translations[lang][key];
+                    el.style.opacity = 1;
+                }, 400);
+            });
+        }
+    </script>
+</body>
+</html>
